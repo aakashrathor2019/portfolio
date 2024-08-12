@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content  %}
+<div class="mt-5">
+	<div class="text-center">
+		<img src="{% static 'core/images/image.jpg' %}" alt="ProfilePic" class="image-thubnail" width="250px" width="150px">
+	</div>
+	<div class="mt-5 text-white text-justify mx-5">
+		<h1 class="font-weight-bold satisfy-regular">Hello,</h1>
+		<div class="px-4" style="line-height: 2rem;">
+			<p style="text-indent: 100px;">I am <b class="text-warning">Aakash Rathor</b>
+				A highly motivated and detail-oriented <b class="text-warning">Python Developer</b> with a strong foundation in Object-Oriented Programming (OOP) and hands-on experience in web development frameworks like Django and Flask. Proficient in back-end development with Python and database management using both SQL and NoSQL technologies, including MongoDB. Skilled in creating responsive and dynamic web applications using HTML, CSS, JavaScript, and jQuery. Experienced with version control systems like GIT and GIT Hub, ensuring code quality and collaboration in team environments. Eager to contribute to innovative projects and continuously expand technical expertise in a challenging and growth-oriented environment.
+			</p>
+		</div>
+	</div>
+	<div class="text-center">
+		<a href="{% url 'contact' %}" class="btn btn-outline-warning my-3 mr-5">Hire Me</a>
+		<a href="{% url 'contact' %}" class="btn btn-outline-info my-3">Contact</a>
+	</div>
+</div>
+{% endblock content %}

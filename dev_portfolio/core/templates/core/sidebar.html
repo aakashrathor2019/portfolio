@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+<head>
+	<style>
+		.nav-link:hover {
+            color: black;
+            background-color: #e9cd79;
+        }
+
+        /* Active Page Effect */
+        .nav-link.active {
+            color: black;
+            background-color: #ffc107;
+            font-weight: bold;
+        }
+</style>
+</head>
+<div class="border-right h-100" style="border-right: 2px solid lightyellow;">
+    <div class="text-center">
+        <img src="{% static 'core/images/image.jpg' %}" alt="ProfilePic" class="img-fluid rounded-circle mt-5" width="100px" height="100px">
+        <h3 class="text-white mt-3 satisfy-regular">Aakash Rathor</h3>
+    </div>
+    <hr  style="border: 2px solid lightcyan;">
+    <nav class="nav flex-column text-center">
+        <a href="{% url 'home' %}" class="nav-link {%if home == 'active'%}active{%endif%}">Home</a>
+        <a href="{% url 'services' %}" class="nav-link {%if service == 'active'%}active{%endif%}">Services</a>
+        <a href="{% url 'skill' %}" class="nav-link {%if skill == 'active'%}active{%endif%}">Skills</a>
+        <a href="{% url 'contact' %}" class="nav-link {%if contact == 'active'%}active{%endif%}">Contact</a>
+    </nav>
+</div>
