@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Certifications</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"], 
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      resize: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Add Certifications</h1>
+    {% if errors %}
+      <p class="error">{{ errors }}</p>
+    {% endif %}
+    <form action="{% url 'add_certifications' %}" method="POST">
+      {% csrf_token %}
+      <label for="cert_name">Certificate Name</label>
+      <input type="text" name="cert_name" id="cert_name" required>
+
+      <label for="cert_duration">Description</label>
+      <input type="text" name="cert_duration" id="cert_duration" rows="4" required> 
+
+      <label for="cert_from">Provider</label>
+      <input type="text" name="cert_from" id="cert_from" rows="4" required> 
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

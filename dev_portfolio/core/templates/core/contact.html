@@ -26,28 +26,34 @@
 	<h1 class="text-warning mb-5 border-bottom">CONTACT US</h1>
 	<div class="row text-white mb-5">
 		<p class="mx-auto mb-5">
-			Do you have any questions? Please do not hesitate to 
+			Do you have any question? Please do not hesitate to 
 			contact. I will come back to you within  a matter of<br> hours to you.
 		</p>
+		{% if error %}
+			<p class="mx-auto mb-5" style="color: red;">
+					{{error}}
+			</p>
+		{% endif  %}
 		<div class="col-sm-9 mb-5">
-			<form action="">
+			<form action="{% url 'contact_form_data' %}" method="Post">
+				{% csrf_token %}
 				<div class="form-row">
 					<div class="form-group col-sm-6">
 						<label for="inputName">Your Name</label>
-						<input type="text"  class="form-control" id="inputName" name="">
+						<input type="text"  class="form-control" id="inputName" name="name">
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="inputEmail">Your Email</label>
-						<input type="email"  class="form-control" id="inputEmail" name="" required>
+						<input type="email"  class="form-control" id="inputEmail" name="email" required>
 					</div>
 				</div>
 				<div class="form-group col-sm-6">
 						<label for="inputSubject">Your Subject</label>
-						<input type="text"  class="form-control" id="inputSubject" name="">
+						<input type="text"  class="form-control" id="inputSubject" name="subject">
 				</div>
 				<div class="form-group col-sm-6 mb-3">
 						<label for="inputTextarea">Your Message</label>
-						<textarea type="text"  class="form-control" id="inputTextarea" name="" required></textarea>
+						<textarea type="text"  class="form-control" id="inputTextarea" name="message" required></textarea>
 				</div>
 				<button class="btn btn-primary" type="submit">Send</button>
 			</form>

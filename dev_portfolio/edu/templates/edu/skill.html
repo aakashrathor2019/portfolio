@@ -1,77 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Skills</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About</title>
+    <style>
+        .container {
+            padding-bottom: 40px;
+        }
+
+        .content {
+            display: none; /* Initially hide the content */
+        }
+
+        .dropdown-btn {
+            cursor: pointer;
+            margin-left: 10px;
+            color: #ffc107; /* Adjust color for visibility */
+            font-size: 20px;
+            border: none;
+            background: none;
+        }
+    </style>
 </head>
 </html>
 {% extends 'core/base.html' %}
 {% block content %}
 <div class="container mt-5">
-	<h1 class="text-warning mb-5 border-bottom">Skills</h1>
-	<div class="row text-white">
-		<div class="col-sm-5">
-			<h3 class="mt-5">Python</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-			</div>
-		</div>
-		<div class="col-sm-5 offset-sm-2">
-			<h3 class="mt-5">OOPs</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
-			</div>
-		</div>
-		<div class="col-sm-5">
-			<h3 class="mt-5">Django</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-			</div>
-		</div>
-		<div class="col-sm-5 offset-sm-2">
-			<h3 class="mt-5">Flask</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-			</div>
-		</div>
-		<div class="col-sm-5">
-			<h3 class="mt-5">MongoDB</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
-			</div>
-		</div>
-		<div class="col-sm-5 offset-sm-2">
-			<h3 class="mt-5">SQL</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-			</div>
-		</div>
-		<div class="col-sm-5">
-			<h3 class="mt-5">HTML</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-			</div>
-		</div>
-		<div class="col-sm-5 offset-sm-2">
-			<h3 class="mt-5">CSS</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-			</div>
-		</div>
-		<div class="col-sm-5">
-			<h3 class="mt-5">Artificial intelligence</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-			</div>
-		</div>
-		<div class="col-sm-5 offset-sm-2">
-			<h3 class="mt-5">GIT/GIT Bash</h3>
-			<div class="progress">
-				<div class=" progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-			</div>
-		</div>
-	</div>
+    <h1 class="text-warning mb-5 border-bottom">ABOUT US</h1>
+    <div class="row text-white">
+        
+        <div class="col-12">
+            <h4 class="text-warning mb-2 border-bottom">
+                Work Experience
+                <button class="dropdown-btn" onclick="toggleContent(this)">&#9660;</button>
+            </h4>
+            <div class="content">
+            {% for i in work_exp_data %}      
+                <ul>
+                    <li style="color: rgb(2, 1, 1); background-color: whitesmoke;"><b>{{i.position}}: </b> {{i.work_duration}}</li>
+                    <b><h6 >{{i.company_name}}</h6></b>
+                    <b><p>{{i.desc}}</p></b>
+                    <h6><b style="background-color: #2314f3;">Technologies :</b> {{i.technologies}}</h6>
+                </ul>
+            {% endfor  %}
+            </div>
+        </div>
+        
+
+        <div class="col-12">
+            <h4 class="text-warning mb-2 border-bottom">
+                Experience
+                <button class="dropdown-btn" onclick="toggleContent(this)">&#9660;</button>
+            </h4>
+            <div class="content">
+            {% for i in exp_data %}      
+                <ul>
+                    <li style="color: white;"><b>{{i.prj_name}}</b></li>
+                    <a href="{{ i.prj_link }}" target="_blank">{{ i.prj_link }}</a>
+                    <b><p>{{i.prj_desc}}</p></b>
+                </ul>
+            {% endfor  %}
+            </div>
+        </div>
+        <div class="col-12">
+            <h4 class="text-warning mb-2 border-bottom">
+                Skills
+                <button class="dropdown-btn" onclick="toggleContent(this)">&#9660;</button>
+            </h4>
+            <div class="content">
+            {% for i in skill_data %}            
+                    <h3 style="color: whitesmoke;">{{i.name}}</h3> 
+                <p style="color: white;">{{i.desc}}</p>
+            {% endfor  %}
+            </div>
+        </div>
+
+         
+        <div class="col-12">
+            <h4 class="text-warning mb-2 border-bottom">
+                Certifications
+                <button class="dropdown-btn" onclick="toggleContent(this)">&#9660;</button>
+            </h4>
+            <div class="content">
+            {% for i in cert_data %}      
+                <ul>
+                    <li style="color: white;"><b>{{i.cert_name}} :</b> {{i.cert_duration}}</li>
+                    <b><p>{{i.cert_from}}</p></b>
+                </ul>
+            {% endfor  %}
+            </div>
+        </div>
+
+        <div class="col-12">
+            <h4 class="text-warning mb-2 border-bottom">
+                Resume
+                <button class="dropdown-btn" onclick="toggleContent(this)">&#9660;</button>
+            </h4>
+            <div class="content">
+            {% for i in cert_data %}      
+                <ul>
+                    <li style="color: white;"><b>{{i.cert_name}} :</b> {{i.cert_duration}}</li>
+                    <b><p>{{i.cert_from}}</p></b>
+                </ul>
+            {% endfor  %}
+            </div>
+        </div>
+
+    </div>
 </div>
 
+<script>
+    function toggleContent(button) {
+        const content = button.parentElement.nextElementSibling;
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "block"; 
+            button.innerHTML = "&#9650;"; 
+        } else {
+            content.style.display = "none";
+            button.innerHTML = "&#9660;"; 
+        }
+    }
+</script>
 {% endblock content %}
