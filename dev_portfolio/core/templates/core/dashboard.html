@@ -1,0 +1,31 @@
+{% extends 'core/navbar.html' %}
+{% block content %}
+<center><h1 style="padding: 5px">Admin Dashboard</h1></center>
+    
+    <div class="message-box">
+        <table class="user-messages-table">
+            <thead>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                    <tr>
+                      <td>{{ forloop.counter}}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.email }}</td>
+                        <td>{{ i.subject }}</td>
+                        <td>
+                          <a href="{% url 'detail_view' i.id %}"><button class="action-btn">View</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,15 +1,22 @@
 from django.shortcuts import render,redirect
 from .models import Contact
 import re
+from django.contrib.auth import authenticate, login as auth_login, logout
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 def home(request):
-	context={'home':'active'}
-	return render(request,'core/home.html',context)
+	context = {'home': 'active'}
+	return render(request, 'core/home.html', context)
+
 
 def contact(request):
-	context={'contact':'active'}
-	return render(request,'core/contact.html',context)
+	context = {'contact': 'active'}
+	return render(request, 'core/contact.html', context)
+
 
 def contact_form_data(request):
     if request.method == "POST":
@@ -47,3 +54,33 @@ def contact_form_data(request):
     context = {'contact': 'active'}
     return render(request, 'core/contact.html', context)
 
+def login_view(request):
+    if request.method == "POST":
+        print('inside login fun')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user:
+            auth_login(request, user)
+            return redirect('dashboard')
+        else:
+            return render(request, 'core/login.html', {'error':'Enter Valid username or password'})
+    return render(request, 'core/login.html')
+
+
+@login_required(login_url='login')
+def dashboard(request):
+    user_messages = Contact.objects.all().order_by('-id')
+    return render(request, 'core/dashboard.html', {'data': user_messages})
+
+
+@login_required(login_url='login')
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+
+@login_required(login_url='login')
+def detail_view(request, id):
+    data = Contact.objects.get(id=id)
+    return render(request, 'core/detail_view.html', {'data': data})

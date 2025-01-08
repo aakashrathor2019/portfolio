@@ -1,9 +1,8 @@
 {% extends 'core/navbar.html' %}
 
 {% block content %}
-<title>{% block title %}Update Experience{% endblock %}</title>
+<title>{% block title %}Update Resume{% endblock %}</title>
   <style>
-    /* Body and layout */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -105,36 +104,27 @@
           font-size: 14px;
       }
 
-      .action-buttons {
-          flex-direction: column;
-          gap: 15px;
-      }
-
+    .action-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
   </style>
-
-  <div class="main-content">
-    <div class="form-container">
-      <h1>Add Experience</h1>
-      {% if errors %}
-        <p class="error">{{ errors }}</p>
-      {% endif %}
-      <form action="{% url 'add_experience' %}" method="POST">
-        {% csrf_token %}
-        
-        <label for="prj_name">Project Name</label>
-        <input type="text" name="prj_name" id="prj_name" required>
-
-        <label for="prj_link">Project Link</label>
-        <input type="url" name="prj_link" id="prj_link" required> 
-
-        <label for="prj_desc">Project Description</label>
-        <textarea name="prj_desc" id="prj_desc" rows="4" required></textarea>
-
-        <button type="submit">Submit</button>
-      </form>
-      <div class="action-buttons">
-        <center><a href="{% url 'dashboard' %}" class="btn back-btn">Back to Dashboard</a></center>
-      </div>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Update Resume</h1>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+    <form action="{% url 'update_resume' %}" method="POST" enctype='multipart/form-data'>
+      {% csrf_token %}
+      <label for="resume">Upload Resume</label>
+      <input type="file" name="resume">
+      <br><br>
+      <button type="submit">Submit</button>
+    </form>
+    <div class="action-buttons">
+      <center><a href="{% url 'dashboard' %}" class="btn back-btn">Back to Dashboard</a></center>
     </div>
   </div>
   

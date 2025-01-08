@@ -10,13 +10,13 @@
         }
 
         .content {
-            display: none; /* Initially hide the content */
+            display: none;  
         }
 
         .dropdown-btn {
             cursor: pointer;
             margin-left: 10px;
-            color: #ffc107; /* Adjust color for visibility */
+            color: #ffc107;  
             font-size: 20px;
             border: none;
             background: none;
@@ -41,7 +41,7 @@
                     <li style="color: rgb(2, 1, 1); background-color: whitesmoke;"><b>{{i.position}}: </b> {{i.work_duration}}</li>
                     <b><h6 >{{i.company_name}}</h6></b>
                     <b><p>{{i.desc}}</p></b>
-                    <h6><b style="background-color: #2314f3;">Technologies :</b> {{i.technologies}}</h6>
+                    <h6><b style="background-color: #2314f3;">Technologies :</b> {{i.technologies}}</h6>    
                 </ul>
             {% endfor  %}
             </div>
@@ -71,7 +71,7 @@
             <div class="content">
             {% for i in skill_data %}            
                     <h3 style="color: whitesmoke;">{{i.name}}</h3> 
-                <p style="color: white;">{{i.desc}}</p>
+                    <p style="color: white;">{{i.desc}}</p>
             {% endfor  %}
             </div>
         </div>
@@ -98,15 +98,19 @@
                 <button class="dropdown-btn" onclick="toggleContent(this)">&#9660;</button>
             </h4>
             <div class="content">
-            {% for i in cert_data %}      
                 <ul>
-                    <li style="color: white;"><b>{{i.cert_name}} :</b> {{i.cert_duration}}</li>
-                    <b><p>{{i.cert_from}}</p></b>
+                    <!-- Link to trigger PDF display -->
+                    <li style="color: white;">
+                        <a href="{% url 'download_resume' %}" download>Download Resume</a>
+                    </li>
                 </ul>
-            {% endfor  %}
+                
+                <!-- The PDF embed container -->
+                <div id="pdf-container" style="display: none;">
+                    <embed src="{{ resume_data.resume_data.url }}" width="100%" height="600px" type="application/pdf">
+                </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -120,6 +124,11 @@
             content.style.display = "none";
             button.innerHTML = "&#9660;"; 
         }
+    }
+
+    function viewResume() {
+        const pdfContainer = document.getElementById('pdf-container');
+        pdfContainer.style.display = 'block';
     }
 </script>
 {% endblock content %}
