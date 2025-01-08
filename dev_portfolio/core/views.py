@@ -77,7 +77,7 @@ def dashboard(request):
 @login_required(login_url='login')
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 @login_required(login_url='login')

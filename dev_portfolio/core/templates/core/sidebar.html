@@ -26,5 +26,10 @@
         <a href="{% url 'services' %}" class="nav-link {%if service == 'active'%}active{%endif%}">Expertise</a>
         <a href="{% url 'skill' %}" class="nav-link {%if skill == 'active'%}active{%endif%}">About</a>
         <a href="{% url 'contact' %}" class="nav-link {%if contact == 'active'%}active{%endif%}">Contact</a>
+        {% if not user.is_authenticated or not user.is_staff %}
+        <a href="{% url 'login' %}" class="nav-link">Admin Login</a>
+        {% else %}
+        <a href="{% url 'dashboard' %}" class="nav-link">Back to Dashboard</a>
+        {% endif %}
     </nav>
 </div>
