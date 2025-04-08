@@ -32,7 +32,7 @@ def contact_form_data(request):
             # Check if the name contains numbers
             if any(char.isdigit() for char in name):
                 return render(request, 'core/contact.html', {'error': 'Name cannot contain numbers.'})
-            
+
             # Validate email format
             email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in)$'
             if not re.match(email_regex, email):
@@ -53,6 +53,7 @@ def contact_form_data(request):
 
     context = {'contact': 'active'}
     return render(request, 'core/contact.html', context)
+
 
 def login_view(request):
     if request.method == "POST":
