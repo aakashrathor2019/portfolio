@@ -5,3 +5,7 @@ pillow==10.4.0
 reportlab==4.2.5
 sqlparse==0.5.2
 typing-extensions==4.12.2
+python-dotenv
+dj-database-url
+psycopg2-binary
+gunicorn
